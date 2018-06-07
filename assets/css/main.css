@@ -1722,6 +1722,8 @@
 		line-height: 1.5;
 		margin: 0 0 0.7em 0;
 		letter-spacing: -0.025em;
+        text-shadow: 1px 1px 1px #fff;
+
 	}
 
 		h1 a, h2 a, h3 a, h4 a, h5 a, h6 a {
@@ -2468,6 +2470,7 @@
 				width: 100%;
 			}
 
+
 /* List */
 
 	ol {
@@ -2843,15 +2846,11 @@
 	}
 
 		.features li {
-			width: calc(33.33333% - 2em);
+			width: calc(25% - 2em);
 			margin-left: 2em;
 			margin-top: 3em;
 			padding: 0;
 		}
-
-			.features li:nth-child(1), .features li:nth-child(2), .features li:nth-child(3) {
-				margin-top: 0;
-			}
 
 			.features li > :last-child {
 				margin-bottom: 0;
@@ -2860,10 +2859,14 @@
 		@media screen and (max-width: 980px) {
 
 			.features li {
-				width: calc(50% - 2em);
+				width: calc(40% - 2em);
 			}
 
-				.features li:nth-child(3) {
+				.features li:nth-child(3),  {
+					margin-top: 3em;
+				}
+
+				.features li:nth-child(4),  {
 					margin-top: 3em;
 				}
 
@@ -2877,12 +2880,12 @@
 			}
 
 				.features li {
-					width: 100%;
+			width: calc(60% - 2em);
 					margin-left: 0;
 					margin-top: 2em;
 				}
 
-					.features li:nth-child(2), .features li:nth-child(3) {
+					.features li:nth-child(3), .features li:nth-child(4) {
 						margin-top: 2em;
 					}
 
@@ -3106,6 +3109,8 @@
 		#header p {
 			font-size: 1.25em;
 			letter-spacing: -0.025em;
+            text-shadow: 1px 1px 1px #fff;
+
 		}
 
 		#header.alt {
@@ -3654,7 +3659,7 @@
 		@media screen and (max-width: 736px) {
 
 			#main > .main {
-				padding: 3em 2em 1em 2em ;
+				padding: 10em 2em 1em 2em ;
 			}
 
 				#main > .main > .image.main:first-child {
@@ -3667,7 +3672,7 @@
 		@media screen and (max-width: 480px) {
 
 			#main > .main {
-				padding: 3em 1.5em 1em 1.5em ;
+				padding: 7em 1.5em 1em 1.5em ;
 			}
 
 				#main > .main > .image.main:first-child {
@@ -3698,6 +3703,9 @@
 						}
 
 		}
+
+/*-------------*/
+
 
 /* Footer */
 
