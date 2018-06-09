@@ -3869,3 +3869,9 @@
 
             }
 
+            @media screen and (min-width: 981px) {
+                #masAbajo {
+                    padding-top: 30px;
+                    padding-left: 50px;
+                }
+            }
