@@ -3767,7 +3767,7 @@
 		@media screen and (max-width: 736px) {
 
 			#footer {
-				padding: 3em 2em 1em 2em ;
+				padding: 3em 2em 1em 0em ;
 			}
 
 		}
@@ -3775,7 +3775,7 @@
 		@media screen and (max-width: 480px) {
 
 			#footer {
-				padding: 3em 1.5em 1em 1.5em ;
+				padding: 3em 1.5em 1em 0em ;
 			}
 
 		}
@@ -3783,7 +3783,7 @@
 		@media screen and (max-width: 480px) {
 
 			#footer {
-				padding: 2.5em 1em 0.5em 1em ;
+				padding: 2.5em 1em 0.5em 0em ;
 			}
 
 		}
@@ -3875,3 +3875,9 @@
                     padding-left: 50px;
                 }
             }
+
+@media screen and (max-width: 480px) {
+                iframe {
+                    display: none;
+            }
+}
