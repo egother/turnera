@@ -1722,8 +1722,6 @@
 		line-height: 1.5;
 		margin: 0 0 0.7em 0;
 		letter-spacing: -0.025em;
-        text-shadow: 1px 1px 1px #fff;
-
 	}
 
 		h1 a, h2 a, h3 a, h4 a, h5 a, h6 a {
@@ -1738,6 +1736,7 @@
 
 	h2 {
 		font-size: 1.5em;
+        font-weight: 550;
 	}
 
 	h3 {

@@ -11,7 +11,8 @@
 		<!--[if lte IE 8]><link rel="stylesheet" href="assets/css/ie8.css" /><![endif]-->
         <link rel="shortcut icon" type="image/x-icon" href="icon.png" />
 
-    
+        <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.0.13/css/all.css" integrity="sha384-DNOHZ68U8hZfKXOrtjWvjxusGo9WQnrNx2sqG0tfsghAvtVlRW3tvkXWZh58N9jp" crossorigin="anonymous">
+
     </head>
 	<body>
 
@@ -31,30 +32,29 @@
 
 								<!-- Text -->
 									<section>
-										<h2 style="text-align: right;">Solicite aquí su turno</h2>
+										<h2 style="text-align: right;">Solicite aquí su turno &nbsp; &nbsp;<i class="far fa-calendar-check fa-2x"></i></h2>
                                         <br />
 										<hr />
-										<p>A continuación puede completar los datos requeridos para que podamos coordinar un turno
-                                            acorde a sus necesidades.</p>
+										<p>&nbsp; &nbsp; &nbsp; &nbsp; Para obtener un diagnóstico preciso es imprescindible evaluar cada caso en detalle, valorando aspectos que varían de persona a persona, como la calidad de su piel, el grado de la alteración, las proporciones anatómicas, etc. Para ello, será necesaria una visita a nuestros consultorios, donde se te facilitará toda la información específica de tu tratamiento personalizado. La naturalidad de los resultados es el objetivo principal en todas las intervenciones estéticas.</p>
 										<hr />
 									</section>
 
 								<!-- Form -->
 									<section>
-										<form method="post" action="#">
+										<form method="post" action="./enviarSolicitud.php">
 											<div class="row uniform">
 												<div class="6u 12u$(xsmall)">
-													<input type="text" name="demo-name" id="demo-name" value="" placeholder="Nombre y Apellido *" required/>
+													<input type="text" name="nombre" id="nombre" value="" placeholder="Nombre y Apellido *" required/>
 												</div>
 												<div class="6u$ 12u$(xsmall)">
-													<input type="email" name="demo-email" id="demo-email" value="" placeholder="Email *" required/>
+													<input type="email" name="email" id="email" value="" placeholder="Email *" required/>
 												</div>
 												<div class="6u 12u$(xsmall)">
-													<input type="text" name="demo-name" id="demo-name" value="" placeholder="Teléfono *" required/>
+													<input type="text" name="telefono" id="telefono" value="" placeholder="Teléfono *" required/>
 												</div>
 												<div class="12u$">
 													<div class="select-wrapper">
-														<select name="demo-category" id="demo-category">
+														<select name="especialidad" id="especialidad">
 															<option value="">- Especialidad -</option>
 															<option value="1">Manufacturing</option>
 															<option value="2">Shipping</option>
@@ -64,7 +64,7 @@
 													</div>
 												</div>
 												<div class="12u$">
-													<textarea name="demo-message" id="demo-message" placeholder="Comentario" rows="6"></textarea>
+													<textarea name="mensaje" id="mensaje" placeholder="Comentario" rows="6"></textarea>
 												</div>
 												<div class="12u$ 12u$(small)">
 													<label style="text-align: right; color: orange">* Requerido</label>
