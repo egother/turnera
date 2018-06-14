@@ -13,6 +13,59 @@
 
         <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.0.13/css/all.css" integrity="sha384-DNOHZ68U8hZfKXOrtjWvjxusGo9WQnrNx2sqG0tfsghAvtVlRW3tvkXWZh58N9jp" crossorigin="anonymous">
 
+        <script>
+            function actualizarProf(espec){
+                switch (espec) {
+                    case "cirugiaplastica":
+                        document.getElementById("profesional").innerHTML = '<option value="">- Profesional -</option> <option  value="ramallo">Dr. Ramallo Julián</option> <option value="dejuana">Dr. De Juana Gastón P.</option>';
+                        break;
+                    case "cirugiageneral":
+                        document.getElementById("profesional").innerHTML = '<option value="">- Profesional -</option> <option  value="ramallo">Dr. Ramallo Julián</option> <option value="dejuana">Dr. De Juana Gastón P.</option> <option value="parisi">Dr. Parisi Ricardo</option>';
+                        break;
+                    case "medicinaestetica":
+                        document.getElementById("profesional").innerHTML = '<option value="">- Profesional -</option> <option  value="ramallo">Dr. Ramallo Julián</option> <option value="lamas">Dra. Lamas Cecilia</option>';
+                        break;
+                    case "flebotomia":
+                        document.getElementById("profesional").innerHTML = '<option value="">- Profesional -</option> <option  value="ramallo">Dr. Ramallo Julián</option>';
+                        document.getElementById("profesional").value="ramallo";
+                        break;
+                    case "cirugialaparoscopica":
+                        document.getElementById("profesional").innerHTML = '<option value="">- Profesional -</option> <option  value="ramallo">Dr. Ramallo Julián</option>';
+                        document.getElementById("profesional").value="ramallo";
+                        break;
+                    case "dermatologiaclinica":
+                        document.getElementById("profesional").innerHTML = '<option value="">- Profesional -</option> <option value="lamas">Dra. Lamas Cecilia</option>';
+                        document.getElementById("profesional").value="lamas";
+                        break;
+                    case "dermatologiaestetica":
+                        document.getElementById("profesional").innerHTML = '<option value="">- Profesional -</option> <option value="lamas">Dra. Lamas Cecilia</option>';
+                        document.getElementById("profesional").value="lamas";
+                        break;
+                    case "ginecologia":
+                        document.getElementById("profesional").innerHTML = '<option value="">- Profesional -</option> <option value="cardozo">Dra. Cardozo Gutiérrez Romina</option>';
+                        document.getElementById("profesional").value="cardozo";
+                        break;
+                    case "esteticagenitalfemenina":
+                        document.getElementById("profesional").innerHTML = '<option value="">- Profesional -</option> <option value="cardozo">Dra. Cardozo Gutiérrez Romina</option>';
+                        document.getElementById("profesional").value="cardozo";
+                        break;
+                    case "psicologia":
+                        document.getElementById("profesional").innerHTML = '<option value="">- Profesional -</option> <option value="espil">Lic. Espil Clara</option>';
+                        document.getElementById("profesional").value="espil";
+                        break;
+                    case "cosmetologia":
+                        document.getElementById("profesional").innerHTML = '<option value="">- Profesional -</option> <option value="peralta">Lic. Peralta Francisca</option>';
+                        document.getElementById("profesional").value="peralta";
+                        break;
+                    case "cirugiapediatrica":
+                        document.getElementById("profesional").innerHTML = '<option value="">- Profesional -</option> <option value="reusmann">Dra. Reusmann Aixa</option>';
+                        document.getElementById("profesional").value="reusmann";
+                        break;
+
+                }
+            }
+        </script>
+        
     </head>
 	<body>
 
@@ -49,17 +102,40 @@
 												<div class="6u$ 12u$(xsmall)">
 													<input type="email" name="email" id="email" value="" placeholder="Email *" required/>
 												</div>
-												<div class="6u 12u$(xsmall)">
-													<input type="text" name="telefono" id="telefono" value="" placeholder="Teléfono" />
+												<div class="6u 12u$">
+													<input type="text" name="telefono" id="telefono" value="" placeholder="Teléfono (Opc.)" />
 												</div>
-												<div class="12u$">
+												<div class="6u 12u$(xsmall)">
 													<div class="select-wrapper">
-														<select name="especialidad" id="especialidad">
+														<select name="especialidad" id="especialidad" onchange=actualizarProf(this.value)>
 															<option value="">- Especialidad -</option>
-															<option value="1">Manufacturing</option>
-															<option value="2">Shipping</option>
-															<option value="3">Administration</option>
-															<option value="4">Human Resources</option>
+															<option value="cirugiaplastica">Cirugía Plástica</option>
+															<option value="cirugiageneral">Cirugía General</option>
+															<option value="medicinaestetica">Medicina Estética</option>
+															<option value="flebotomia">Flebotomía</option>
+															<option value="cirugialaparoscopica">Cirugía Laparoscópica</option>
+															<option value="dermatologiaclinica">Dermatología Clínica</option>
+															<option value="dermatologiaestetica">Dermatología Estética</option>
+															<option value="ginecologia">Ginecología y Obstreticia</option>
+															<option value="esteticagenitalfemenina">Estética Genital Femenina</option>
+															<option value="psicologia">Psicología</option>
+															<option value="cosmetologia">Cosmetología</option>
+															<option value="cirugiapediatrica">Cirugía Pediátrica</option>
+														</select>
+													</div>
+												</div>
+												<div class="6u 12u$(xsmall)">
+													<div class="select-wrapper">
+														<select name="profesional" id="profesional">
+															<option value="">- Profesional -</option>
+															<option value="ramallo">Dr. Ramallo Julián</option>
+															<option value="lamas">Dra. Lamas Cecilia</option>
+															<option value="dejuana">Dr. De Juana Gastón P.</option>
+															<option value="cardozo">Dra. Cardozo Gutiérrez Romina</option>
+															<option value="parisi">Dr. Parisi Ricardo</option>
+															<option value="espil">Lic. Espil Clara</option>
+															<option value="peralta">Lic. Peralta Francisca</option>
+															<option value="reusmann">Dra. Reusmann Aixa</option>
 														</select>
 													</div>
 												</div>
