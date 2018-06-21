@@ -64,6 +64,7 @@
         "peralta"           Sabados 9-13hs
         "reusmann"          Lunes 14-17hs
     */
+        document.getElementById("fecha").value = "";
         var today = new Date();
         var dd = today.getDate();
         var mm = today.getMonth();
@@ -95,4 +96,25 @@
                 calendario.options.selectableDOW = [dia];
                 calendario.render();
             }
+    }
+
+    function verHorarios() {
+        
+/*        doc = document.getElementById("doc").value;
+        if (window.XMLHttpRequest) {
+            // code for IE7+, Firefox, Chrome, Opera, Safari
+            xmlhttp = new XMLHttpRequest();
+        } else {
+            // code for IE6, IE5
+            xmlhttp = new ActiveXObject("Microsoft.XMLHTTP");
+        }
+        xmlhttp.onreadystatechange = function() {
+            if (this.readyState == 4 && this.status == 200) {
+                document.getElementById("txtHint").innerHTML = this.responseText;
+            }
+        };
+
+        xmlhttp.open("GET","../app/controllers/getHours.php?q="+str+"&doc="+doc,true);
+        xmlhttp.send();    
+*/
     }
