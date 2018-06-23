@@ -99,8 +99,10 @@
     }
 
     function verHorarios() {
-        
-/*        doc = document.getElementById("doc").value;
+        var espec = document.getElementById("especialidad").value;
+        var prof = document.getElementById("profesional").value;
+        var fec = document.getElementById("fecha").value;
+//        doc = document.getElementById("doc").value;
         if (window.XMLHttpRequest) {
             // code for IE7+, Firefox, Chrome, Opera, Safari
             xmlhttp = new XMLHttpRequest();
@@ -116,5 +118,4 @@
 
         xmlhttp.open("GET","../app/controllers/getHours.php?q="+str+"&doc="+doc,true);
         xmlhttp.send();    
-*/
     }
