@@ -1,10 +1,9 @@
 <?php
 
-    error_reporting(0);
     $fec = $_GET['fecha'];
     $prof = $_GET['prof'];
     $dbname = "cmaustria";
-    $dbhost = "localhost";
+    $dbhost = "192.168.0.10";
     $dbuser = "cmaustria"; $dbpass = "cmaustria";
 
     $db = new PDO("mysql:dbname=".$dbname.";host=".$dbhost,$dbuser,$dbpass);
@@ -23,12 +22,12 @@
     foreach ($sql as $res){
         $resultado[] = $res['hora'];
     }
-echo "
-<select name=\"hora\" required>";
-        foreach ($resultado as $h){
-            $date = new DateTime($h);
-            $reduc = $date->format('H:i');
-            echo "<option value=\"$reduc\">$reduc</option>";
-}
-echo "</select>";
+    echo "
+    <select name=\"hora\" required>";
+            foreach ($resultado as $h){
+                $date = new DateTime($h);
+                $reduc = $date->format('H:i');
+                echo "<option value=\"$reduc\">$reduc</option>";
+    }
+    echo "</select>";
 ?>
