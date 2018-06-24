@@ -79,7 +79,7 @@
 												</div>
 												<div class="6u 12u$(xsmall)">
 													<div class="select-wrapper">
-														<select name="profesional" id="profesional" onchange=habilitarDias(this.value)>
+														<select name="profesional" id="profesional" onchange=habilitarDias(this.value) required>
 															<option value="">- Profesional -</option>
 															<option value="ramallo">Dr. Ramallo Julián</option>
 															<option value="lamas">Dra. Lamas Cecilia</option>
@@ -92,9 +92,12 @@
 														</select>
 													</div>
 												</div>
-												<div class="12u$ 12u$(small)">
-                                                    <input type="text" id="fecha" style="width:200px;" readonly="true" disabled="true"/>
+												<div class="6u 12u$(small)">
+                                                    <input type="text" id="fecha" style="width:200px;" readonly="true" disabled="true" placeholder="Fecha" required />
 												</div>
+												<div id="txtHint" class="3u 12u$(small)">
+                                                    <!-- acá van a aparecer los horarios disponibles--><input type="text" placeholder="Horarios disponibles" disabled required />
+                                                </div>
 												<div class="12u$">
 													<textarea name="mensaje" id="mensaje" placeholder="Consulta" rows="6"></textarea>
 												</div>

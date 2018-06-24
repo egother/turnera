@@ -64,7 +64,11 @@
         "peralta"           Sabados 9-13hs
         "reusmann"          Lunes 14-17hs
     */
+        // reseteamos los campos necesarios para la nueva seleccion
         document.getElementById("fecha").value = "";
+        document.getElementById("txtHint").innerHTML = "<input type='text' placeholder='Horarios disponibles' disabled required />";
+        
+        
         var today = new Date();
         var dd = today.getDate();
         var mm = today.getMonth();
@@ -74,8 +78,10 @@
         {
             cssName: 'flatwhite',
             selectedDate: new Date(yyyy, mm, dd),
-            selectableYears: [yyyy],
-            selectableMonths: [mm, mm+1]
+            selectableDateRange: [
+                { from: new Date(yyyy, mm, dd),
+                    to: new Date(yyyy, mm+3, dd) }
+            ],
         }).glDatePicker(true);
 
             var dia = -1;
@@ -99,7 +105,6 @@
     }
 
     function verHorarios() {
-        var espec = document.getElementById("especialidad").value;
         var prof = document.getElementById("profesional").value;
         var fec = document.getElementById("fecha").value;
 //        doc = document.getElementById("doc").value;
@@ -116,6 +121,6 @@
             }
         };
 
-        xmlhttp.open("GET","../app/controllers/getHours.php?q="+str+"&doc="+doc,true);
+        xmlhttp.open("GET","../app/verHorarios.php?fecha="+fec+"&prof="+prof,true);
         xmlhttp.send();    
     }
