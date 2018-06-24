@@ -79,7 +79,7 @@
             cssName: 'flatwhite',
             selectedDate: new Date(yyyy, mm, dd),
             selectableDateRange: [
-                { from: new Date(yyyy, mm, dd),
+                { from: new Date(yyyy, mm, dd+1),
                     to: new Date(yyyy, mm+3, dd) }
             ],
         }).glDatePicker(true);
