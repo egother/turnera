@@ -45,75 +45,6 @@
 										<hr />
 									</section>
 
-								<!-- Form -->
-									<section>
-										<form method="post" action="../app/enviarSolicitud.php ">
-											<div class="row uniform">
-												<div class="6u 12u$(xsmall)">
-													<input type="text" name="nombre" id="nombre" value="" placeholder="Nombre y Apellido *" required/>
-												</div>
-												<div class="6u$ 12u$(xsmall)">
-													<input type="email" name="email" id="email" value="" placeholder="Email *" required/>
-												</div>
-												<div class="6u 12u$">
-													<input type="text" name="telefono" id="telefono" value="" placeholder="Teléfono (Opc.)" />
-												</div>
-												<div class="6u 12u$(xsmall)">
-													<div class="select-wrapper">
-														<select name="especialidad" id="especialidad" onchange=actualizarProf(this.value)>
-															<option value="">- Especialidad -</option>
-															<option value="cirugiaplastica">Cirugía Plástica</option>
-															<option value="cirugiageneral">Cirugía General</option>
-															<option value="medicinaestetica">Medicina Estética</option>
-															<option value="flebotomia">Flebotomía</option>
-															<option value="cirugialaparoscopica">Cirugía Laparoscópica</option>
-															<option value="dermatologiaclinica">Dermatología Clínica</option>
-															<option value="dermatologiaestetica">Dermatología Estética</option>
-															<option value="ginecologia">Ginecología y Obstreticia</option>
-															<option value="esteticagenitalfemenina">Estética Genital Femenina</option>
-															<option value="psicologia">Psicología</option>
-															<option value="cosmetologia">Cosmetología</option>
-															<option value="cirugiapediatrica">Cirugía Pediátrica</option>
-														</select>
-													</div>
-												</div>
-												<div class="6u 12u$(xsmall)">
-													<div class="select-wrapper">
-														<select name="profesional" id="profesional" onchange=habilitarDias(this.value) required>
-															<option value="">- Profesional -</option>
-															<option value="ramallo">Dr. Ramallo Julián</option>
-															<option value="lamas">Dra. Lamas Cecilia</option>
-															<option value="dejuana">Dr. De Juana Gastón P.</option>
-															<option value="cardozo">Dra. Cardozo Gutiérrez Romina</option>
-															<option value="parisi">Dr. Parisi Ricardo</option>
-															<option value="espil">Lic. Espil Clara</option>
-															<option value="peralta">Lic. Peralta Francisca</option>
-															<option value="reusmann">Dra. Reusmann Aixa</option>
-														</select>
-													</div>
-												</div>
-												<div class="6u 12u$(small)">
-                                                    <input type="text" name="fecha" id="fecha" style="width:200px;" readonly="true" disabled="true" placeholder="Fecha" required />
-												</div>
-												<div id="txtHint" class="3u 12u$(small)">
-                                                    <!-- acá van a aparecer los horarios disponibles--><input type="text" placeholder="Horarios disponibles" disabled required />
-                                                </div>
-												<div class="12u$">
-													<textarea name="mensaje" id="mensaje" placeholder="Consulta" rows="6"></textarea>
-												</div>
-												<div class="12u$ 12u$(small)">
-													<label style="text-align: right; color: orange">* Requerido</label>
-												</div>
-												<div class="12u$">
-													<ul class="actions">
-														<li><input type="submit" value="Reservar" class="special" /></li>
-														<li><input type="reset" value="Vaciar" /></li>
-														<li><input type="button" value="Cancelar" onclick="window.location = 'index.html'"/></li>
-													</ul>
-												</div>
-											</div>
-										</form>
-									</section>
 							</section>
 
 					</div>
@@ -133,38 +64,5 @@
 			<script src="assets/js/util.js"></script>
 			<script src="assets/js/main.js"></script>
         
-        <!-- Scripts para el datepicker -->
-            <script src="assets/js/formulario.js"></script>
-            <script src="dist/js/glDatePicker.min.js"></script>
-
 	</body>
 </html>
-
-<!-- Info Doctores y Especialidades
-
-    Dr. Ramallo Julian
-        Cirugia Plastica, Cirugia General, Medicina Estetica, Flebotomia, Cirugia Laparoscopica
-        Jueves 14-20hs; 
-    Dra. Lamas Cecilia
-        Dermatologia Clinica, Dermatologia Estetica, Medicina Estetica
-        Martes 12-20hs
-    Dr. De Juana Gastón P.
-        Cirugia Plastica, Cirugia General
-        Miércoles 14-16hs
-    Dra. Cardozo Gutierrez Romina
-        Ginecologia y Obstetricia, Estetica Genital Femenina
-        Lunes 16-18hs
-    Dr. Parisi Ricardo
-        Cirugia General
-        Jueves 16-18hs
-    Lic. Espil Clara
-        Psicologia
-        Lunes 17-20hs
-    Lic. Peralta Francisca
-        Cosmetologia
-        Sabados 9-13hs
-    Dra. Reusmann Aixa
-        Cirugia Pediatrica
-        Lunes 14-17hs
-
--->
