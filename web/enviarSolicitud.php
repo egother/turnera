@@ -72,7 +72,6 @@
                  $sql->bindParam(':t', $t, PDO::PARAM_STR);
                  $sql->bindParam(':e', $e, PDO::PARAM_STR);
                  $sql->execute();
-                print_r($sql); exit;
                  $report = "Genial! Su turno ya ha sido reservado.";
                  $sub = "A la brevedad le llegará un correo electrónico confirmando su solicitud.";
             }
