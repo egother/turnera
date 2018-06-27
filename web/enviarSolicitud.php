@@ -26,7 +26,7 @@
         return $comment;
     }
     
-    enviarMailProfesional($prof, $turno_id){
+    function enviarMailProfesional($db, $prof, $turno_id){
         $sql = $db->prepare("
             select full_name, email from profesional where (usuario = \"$prof\")
         ");
@@ -76,9 +76,9 @@
 //        $headers .= 'Cc: laulamas@hotmail.com' . "\r\n";
 
         mail("egomez.ogg@gmail.com",$subject,$message,$headers);
-    };
+    }
     
-    enviarMailPaciente($email, $prof, $turno_id){
+    function enviarMailPaciente($db, $prof, $turno_id){
         $sql = $db->prepare("
             select full_name, email from profesional where (usuario = \"$prof\")
         ");
@@ -125,9 +125,8 @@
 //        $headers .= 'Cc: laulamas@hotmail.com' . "\r\n";
 
         mail("egomez.ogg@gmail.com",$subject,$message,$headers);
-    };    
+    }    
     
-    error_reporting(0);
         include('../app/connect.php'    );
         $report="Nada que reportar";
 
@@ -216,8 +215,8 @@
                 
                 
                 // envío automático de e-mails
-                enviarMailProfesional($prof, $turno_id);
-                enviarMailPaciente($prof, $turno_id);
+                enviarMailProfesional($db, $prof, $turno_id);
+                enviarMailPaciente($db, $prof, $turno_id);
             }
             catch( PDOException $Exception ) {
                 $report = "Hubo un problema al intentar ejecutar la instrucción SQL.";
