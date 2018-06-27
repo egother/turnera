@@ -121,6 +121,6 @@
             }
         };
 
-        xmlhttp.open("GET","../app/verHorarios.php?fecha="+fec+"&prof="+prof,true);
+        xmlhttp.open("GET","./verHorarios.php?fecha="+fec+"&prof="+prof,true);
         xmlhttp.send();    
     }
