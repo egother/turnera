@@ -8,6 +8,6 @@
         $db->exec("set names utf8");    //  lo desactive porque dejo de funcionar
     }
     catch (PDOException $e){
-        echo "No se pudo conectar con la base de datos"; exit;
+        echo "No se pudo conectar con la base de datos:" . $e->getMessage() . "</br>"; exit;
     }
 ?>

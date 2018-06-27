@@ -25,7 +25,108 @@
 		$comment = strip_tags($comment);
         return $comment;
     }
+    
+    enviarMailProfesional($prof, $turno_id){
+        $sql = $db->prepare("
+            select full_name, email from profesional where (usuario = \"$prof\")
+        ");
+        $sql->execute();
+        $res = $sql->fetchAll(PDO::FETCH_ASSOC);
+        $to = $res[0]["email"];
+        $d = $res[0]["full_name"];
+        
+        $sql = $db->prepare("
+            select * from turnos inner join pacientes on (turnos.id_paciente = pacientes.id) where (turnos.id = \"$turno_id\")
+        ");
+        $sql->execute();
+        $res = $sql->fetchAll(PDO::FETCH_ASSOC);
+        $n = $res[0]["nombre"];
+        $f = $res[0]["fecha"];
+        $h = $res[0]["hora"];
+        $c = $res[0]["mensaje"];
+        
+        $subject = "CMA - Turno Reservado [#" . $turno_id . "]";
 
+        $message = "
+            <html>
+                <head>
+                    <title>Nuevo Turno Online</title>
+                </head>
+                <body>
+                    <h1>Se ha confirmado un nuevo turno online</h1>
+                    <h2>Pronto le estará llegando la confirmación del mismo.</h2><br>
+                    <p>A continuación los detalles:<br><br>
+                        Nombre y Apellido: <strong>$n</strong><br>
+                        Fecha: <strong>$f</strong><br>
+                        Hora: <strong>$h</strong><br>
+                        Profesional: <strong>$d<strong><br>
+                        Consulta: <strong>$c</strong><br>
+                    </p>
+                    <h2>Gracias por contactarnos!</h2>
+                    <h3>Dr. Julián Ramallo</h3>
+                </body>
+            </html>        ";
+
+        // Always set content-type when sending HTML email
+        $headers = "MIME-Version: 1.0" . "\r\n";
+        $headers .= "Content-type:text/html;charset=UTF-8" . "\r\n";
+
+        // More headers
+        $headers .= 'From: Administrador CMAustria<info@cmaustria.com.ar>' . "\r\n";
+//        $headers .= 'Cc: laulamas@hotmail.com' . "\r\n";
+
+        mail("egomez.ogg@gmail.com",$subject,$message,$headers);
+    };
+    
+    enviarMailPaciente($email, $prof, $turno_id){
+        $sql = $db->prepare("
+            select full_name, email from profesional where (usuario = \"$prof\")
+        ");
+        $sql->execute();
+        $res = $sql->fetchAll(PDO::FETCH_ASSOC);
+        $d = $res[0]["full_name"];
+        
+        $sql = $db->prepare("
+            select * from turnos inner join pacientes on (turnos.id_paciente = pacientes.id) where (turnos.id = \"$turno_id\")
+        ");
+        $sql->execute();
+        $res = $sql->fetchAll(PDO::FETCH_ASSOC);
+        $n = $res[0]["nombre"];
+        $f = $res[0]["fecha"];
+        $h = $res[0]["hora"];
+        $to = $res[0]["email"];
+        
+        $subject = "CMA - Turno Reservado [#" . $turno_id . "]";
+
+        $message = "
+            <html>
+                <head>
+                    <title>Nuevo Turno Online</title>
+                </head>
+                <body>
+                    <h1>Se ha confirmado un nuevo turno online</h1>
+                    <p>A continuación los detalles:<br><br>
+                        Nombre y Apellido: <strong>$n</strong><br>
+                        Fecha: <strong>$f</strong><br>
+                        Hora: <strong>$h</strong><br>
+                        Profesional: <strong>$d<strong><br>
+                    </p>
+                    <h2>Gracias por contactarnos!</h2>
+                    <h3>Consultorio Médico Austria</h3>
+                </body>
+            </html>        ";
+
+        // Always set content-type when sending HTML email
+        $headers = "MIME-Version: 1.0" . "\r\n";
+        $headers .= "Content-type:text/html;charset=UTF-8" . "\r\n";
+
+        // More headers
+        $headers .= 'From: Administrador CMAustria<info@cmaustria.com.ar>' . "\r\n";
+//        $headers .= 'Cc: laulamas@hotmail.com' . "\r\n";
+
+        mail("egomez.ogg@gmail.com",$subject,$message,$headers);
+    };    
+    
     error_reporting(0);
         include('../app/connect.php'    );
         $report="Nada que reportar";
@@ -33,23 +134,23 @@
         $error = false;
         if (sizeof($_POST) > 0){
 
-            $n = sanitizar($_POST["nombre"]);
-            $c = sanitizar($_POST["email"]);
-            $t = sanitizar($_POST["telefono"]);
-            $p = sanitizar($_POST["profesional"]);
-            $e = sanitizar($_POST["especialidad"]);
+            $nombrePaciente = sanitizar($_POST["nombre"]);
+            $email = sanitizar($_POST["email"]);
+            $tel = sanitizar($_POST["telefono"]);
+            $prof = sanitizar($_POST["profesional"]);
+            $espec = sanitizar($_POST["especialidad"]);
             $msj = sanitizar($_POST["mensaje"]);
-            $msj = "Especialidad: " . $e . " - Mensaje: " . $msj;
-            $f = sanitizar($_POST["fecha"]);
-            $h = sanitizar($_POST["hora"]);
-            $h = $h . ":00";
+            $msj = "Especialidad: " . $espec . " - Mensaje: " . $msj;
+            $fecha = sanitizar($_POST["fecha"]);
+            $hora = sanitizar($_POST["hora"]);
+            $hora = $hora . ":00";
             
             //cambiar formato a la hora para que funcione en SQL
-            $fecha = DateTime::createFromFormat('d/m/Y', $f);
-            $f = $fecha->format('Y-m-d');
+            $fechaReservada = DateTime::createFromFormat('d/m/Y', $fecha);
+            $fecha = $fechaReservada->format('Y-m-d');
             
             $hoy = new DateTime("now");
-            if ($fecha < $hoy){
+            if ($fechaReservada < $hoy){
                 $error = true;
                 $report = "La fecha que eligió no está permitida.";
             }
@@ -59,21 +160,64 @@
         }
         if (! $error) {
             try {
-                $sql = $db->prepare(
-                    "insert into turnos (fecha, hora, mensaje, profesional, paciente, email, telefono, especialidad)
-                     values (:f, :h, :m, :p, :n, :c, :t, :e)
+                // verifcamos si ya existe un paciente con este email
+                $consulta = $db->prepare("
+                    select id, nombre, email, telefono
+                    from pacientes
+                    where (email = \"$email\")
+                ");
+                $consulta->execute();
+                $pacientes = $consulta->fetchAll(PDO::FETCH_ASSOC);
+                if (sizeof($pacientes)==1){
+                    $paciente = $pacientes[0];
+                    $paciente_id = $paciente["id"];
+                    
+                    // actualizo telefono si antes no lo habia ingresado
+                    if ($paciente["telefono"]==""){
+                        $actualizar = $db->prepare("
+                            update pacientes
+                            set telefono=\"$telefono\")
+                            where (id = \"$paciente_id\")
+                        ");
+                        $actualizar->execute();
+                    }
+                    
+                } else {
+                    // agregamos los datos del paciente a nuestro sistema
+                    $sql = $db->prepare("
+                        insert into pacientes (nombre, email, telefono)
+                        values (:n, :e, :t)
+                    ");
+                    $sql->bindParam(':e', $email, PDO::PARAM_STR);
+                    $sql->bindParam(':t', $tel, PDO::PARAM_STR);
+                    $sql->bindParam(':n', $nombrePaciente, PDO::PARAM_STR);
+
+                    $sql->execute();
+                    $paciente_id = $db->lastInsertId();
+                }
+                
+                // agregamos el turno al sistema
+                $sqlTurnos = $db->prepare(
+                    "insert into turnos (fecha, hora, mensaje, profesional, id_paciente, especialidad)
+                     values (:f, :h, :m, :p, :i, :e)
                  ");
-                 $sql->bindParam(':f', $f, PDO::PARAM_STR);
-                 $sql->bindParam(':h', $h, PDO::PARAM_STR);
-                 $sql->bindParam(':m', $msj, PDO::PARAM_STR);
-                 $sql->bindParam(':p', $p, PDO::PARAM_STR);
-                 $sql->bindParam(':n', $n, PDO::PARAM_STR);
-                 $sql->bindParam(':c', $c, PDO::PARAM_STR);
-                 $sql->bindParam(':t', $t, PDO::PARAM_STR);
-                 $sql->bindParam(':e', $e, PDO::PARAM_STR);
-                 $sql->execute();
-                 $report = "Genial! Su turno ya ha sido reservado.";
-                 $sub = "A la brevedad le llegará un correo electrónico confirmando su solicitud.";
+                 $sqlTurnos->bindParam(':f', $fecha, PDO::PARAM_STR);
+                 $sqlTurnos->bindParam(':h', $hora, PDO::PARAM_STR);
+                 $sqlTurnos->bindParam(':m', $msj, PDO::PARAM_STR);
+                 $sqlTurnos->bindParam(':p', $prof, PDO::PARAM_STR);
+                 $sqlTurnos->bindParam(':i', $paciente_id, PDO::PARAM_STR);
+                 $sqlTurnos->bindParam(':e', $espec, PDO::PARAM_STR);
+                 $sqlTurnos->execute();
+                 $turno_id = $db->lastInsertId();
+                 $report = "Su turno ha sido confirmado.";
+                 $sub = "A la brevedad le llegará un correo electrónico confirmando su reserva. <br /><br />
+                        Recuerde llevar a la cita médica sus últimos estudios en caso de ser necesarios. <br /><br />
+                        Solicitamos su presencia con una antelación de 10 minutos a la hora del turno. Muchas gracias.";
+                
+                
+                // envío automático de e-mails
+                enviarMailProfesional($prof, $turno_id);
+                enviarMailPaciente($prof, $turno_id);
             }
             catch( PDOException $Exception ) {
                 $report = "Hubo un problema al intentar ejecutar la instrucción SQL.";
@@ -106,9 +250,9 @@
                                             &nbsp; &nbsp;<i class="far fa-calendar-check fa-2x"></i></h2>
                                         <br />
 										<hr />
-										<p>&nbsp; &nbsp; &nbsp; &nbsp; 
+										<h3> 
                                             <?php echo $sub; ?>
-                                        </p>
+                                        </h3>
 										<hr />
                                         <div class="row uniform">
                                             <div class="6u 12u$(xsmall)">
