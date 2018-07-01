@@ -112,11 +112,16 @@
                         Hora: <strong>$h</strong><br>
                         Profesional: <strong>$d</strong><br>
                     </p>
-                    <h2>Gracias por elegirnos</h2>
                     <p>Recuerde llevar a la cita médica sus últimos estudios en caso de ser necesarios. <br /><br />
                         Solicitamos su presencia con una antelación de 10 minutos a la hora del turno. Muchas gracias.</p>
                         <hr />
-                    <h3>InfoMail - Consultorio Médico Austria</h3>
+							<h2>Nos encontramos en</h2>
+							<dl>
+								<dt><a href=\"https://goo.gl/maps/VgnZfq5Hkx42\" target=\"_blank\">Austria 2174  7°A &bull; C.A.B.A. &bull; Argentina</a></dd>
+								<dt>(011) 4802-6891</dd>
+								<dt><a href=\"mailto:info@cmaustria.com.ar\">info@cmaustria.com.ar</a></dd>
+                                <img src=\"http://www.cmaustria.com.ar/images/logo.png\" />
+							</dl>
                 </body>
             </html>        ";
 

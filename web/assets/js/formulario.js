@@ -107,6 +107,9 @@
     function verHorarios() {
         var prof = document.getElementById("profesional").value;
         var fec = document.getElementById("fecha").value;
+        
+        // mostrar icono loading
+        document.getElementById("txtHint").innerHTML = "<img src=\"images/loading.gif\" style=\"height: 30px\" />";
 //        doc = document.getElementById("doc").value;
         if (window.XMLHttpRequest) {
             // code for IE7+, Firefox, Chrome, Opera, Safari
