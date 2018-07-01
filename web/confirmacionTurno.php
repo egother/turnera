@@ -99,7 +99,7 @@
         
         $subject = "CMA - Turno Online [#" . $turno_id . "]";
 
-        $message = file_get_contents("mail/externo.php");
+        $message = file_get_contents("../mail/externo.php");
 
         // Always set content-type when sending HTML email
         $headers = "MIME-Version: 1.0" . "\r\n";

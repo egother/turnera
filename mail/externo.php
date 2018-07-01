@@ -6,7 +6,7 @@
     <body>
         <h1>Su turno online ha sido confirmado</h1>
         <p>A continuación los detalles:<br><br>
-            Nombre y Apellido: <strong>$n</strong><br>
+            Nombre y Apellido: <strong><?php $n; ?></strong><br>
             Fecha: <strong><?php $f; ?></strong><br>
             Hora: <strong><?php $h; ?></strong><br>
             Profesional: <strong><?php $d; ?></strong><br>
