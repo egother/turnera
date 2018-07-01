@@ -49,6 +49,7 @@
         $subject = "CMA - Turno Online [#" . $turno_id . "]";
 
         $message = "
+            <!DOCTYPE html>
             <html>
                 <head>
                     <title>Nuevo Turno Online</title>
@@ -65,7 +66,8 @@
                     </p>
                     <h3>InfoMail - Consultorio Médico Austria</h3>
                 </body>
-            </html>        ";
+            </html>        
+        ";
 
         // Always set content-type when sending HTML email
         $headers = "MIME-Version: 1.0" . "\r\n";
@@ -99,7 +101,60 @@
         
         $subject = "CMA - Turno Online [#" . $turno_id . "]";
 
-        $message = file_get_contents("../mail/externo.php");
+        $message = "
+<html>
+    <head>
+        <title>Detalles del Turno</title>
+    </head>
+    <body>
+		<!-- Wrapper -->
+			<div>
+				<!-- Header -->
+					<header style=\"padding: 15px\"> 
+						<span><img src=\"http://www.cmaustria.com.ar/images/logo.png\" alt=\"\" style=\"max-width: 30%;\"/></span>
+					</header>
+				<!-- Main -->
+					<div>
+						<!-- Content -->
+							<section>
+								<!-- Text -->
+									<section>
+                                    <div>
+										<h2 style=\"text-align: right;\">
+                                            Su turno ha sido confirmado.
+                                        <br />
+                                    </div>
+										<hr  style=\"color: orange;\"/>
+										<h3> 
+                                            A continuación los detalles:<br><br>
+                                            Nombre y Apellido: <strong>$n</strong><br>
+                                            Fecha: <strong>$f</strong><br>
+                                            Hora: <strong>$h</strong><br>
+                                            Profesional: <strong>$d</strong><br>
+                                        </h3>
+										<hr  style=\"color: orange;\"/>
+									</section>
+							</section>
+					</div>
+				<!-- Footer -->
+					<footer>
+                        <h4>Recuerde llevar a la cita médica sus últimos estudios en caso de ser necesarios. <br />
+                        Solicitamos su presencia con una antelación de 10 minutos a la hora del turno. Muchas gracias.
+                        </h4>
+                        <h3>Nos encontramos en</h3>
+                        <dl class=\"alt\">
+                            <dt>Dirección</dt>
+                            <dd><a style=\"color: black\" href=\"https://goo.gl/maps/VgnZfq5Hkx42\" target=\"_blank\">Austria 2174  7°A &bull; C.A.B.A. &bull; Argentina</a></dd>
+                            <dt>Teléfono</dt>
+                            <dd>(011) 4802-6891</dd>
+                            <dt>Email</dt>
+                            <dd><a style=\"color: black\" href=\"mailto:info@cmaustria.com.ar\">info@cmaustria.com.ar</a></dd>
+                        </dl>
+					</footer>
+			</div>
+    </body>
+</html>
+        ";
 
         // Always set content-type when sending HTML email
         $headers = "MIME-Version: 1.0" . "\r\n";
@@ -166,8 +221,8 @@
                             set (telefono = :t)
                             where (id = :id)
                         ");
-                        $sql->bindParam(':t', $telefono, PDO::PARAM_STR);
-                        $sql->bindParam(':id', $paciente_id, PDO::PARAM_STR);
+                        $actualizar->bindParam(':t', $telefono, PDO::PARAM_STR);
+                        $actualizar->bindParam(':id', $paciente_id, PDO::PARAM_STR);
                         $actualizar->execute();
                     }
                     
@@ -205,7 +260,7 @@
                 
                 
                 // envío automático de e-mails
-                enviarMailProfesional($db, $prof, $turno_id);
+          //      enviarMailProfesional($db, $prof, $turno_id);
                 enviarMailPaciente($db, $prof, $turno_id);
             }
             catch( PDOException $Exception ) {
