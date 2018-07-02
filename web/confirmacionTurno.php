@@ -42,6 +42,8 @@
         $res = $sql->fetchAll(PDO::FETCH_ASSOC);
         $n = $res[0]["nombre"];
         $f = $res[0]["fecha"];
+        $pe = $res[0]["email"];
+        $t = $res[0]["telefono"];
         $h = $res[0]["hora"];
         $c = $res[0]["mensaje"];
         $e = $res[0]["especialidad"];
@@ -49,25 +51,238 @@
         $subject = "CMA - Turno Online [#" . $turno_id . "]";
 
         $message = "
-            <!DOCTYPE html>
-            <html>
-                <head>
-                    <title>Nuevo Turno Online</title>
-                </head>
-                <body>
-                    <h1>Se ha confirmado un nuevo turno online</h1>
-                    <p>A continuación los detalles:<br><br>
-                        Nombre y Apellido: <strong>$n</strong><br>
-                        Fecha: <strong>$f</strong><br>
-                        Hora: <strong>$h</strong><br>
-                        Profesional: <strong>$d</strong><br>
-                        Especialidad: <strong>$e</strong><br>
-                        Consulta: <strong>$c</strong><br>
-                    </p>
-                    <h3>InfoMail - Consultorio Médico Austria</h3>
-                </body>
-            </html>        
-        ";
+<html>
+
+<head>
+
+    <style>
+
+        p {
+            margin-right: 0cm;
+            margin-left: 0cm;
+            font-size: 12.0pt;
+            font-family: \"Calibri\", serif;
+        }
+        
+    </style>
+
+</head>
+
+<body>
+
+    <div class=WordSection1>
+
+        <div align=center>
+
+            <table border=0 cellspacing=0 cellpadding=0 width=0 style='width:450.0pt'>
+                <tr>
+                    <td width=600 valign=top style='width:450.0pt;padding:0cm 0cm 0cm 0cm'>
+                        <div align=center>
+                            <table border=0 cellspacing=0 cellpadding=0 width=\"100%\" style='width:100.0%;'>
+                                <tr>
+                                    <td style='padding:0cm 0cm 0cm 0cm'>
+                                        <div align=center>
+                                            <table border=0 cellspacing=0 cellpadding=0 width=\"100%\" style='width:100.0%'>
+                                                <tr>
+                                                    <td style='width:112.5pt;padding:0cm 0cm 0cm 0cm'><img width=\"150%\"  src='http://www.cmaustria.com.ar/images/logo_mini.png' /></td>
+                                                    <td width=450 style='width:337.5pt;padding:0cm 0cm 0cm 0cm'>
+                                                        <p align=right style='margin-bottom:0cm;margin-bottom:
+      .0001pt;text-align:right;line-height:normal'><b><span style='font-size:10.0pt;font-family:\"Tahoma\",sans-serif;color:#666666;'>Turno Online<br>
+      </span></b><b><span style='font-size:15.0pt;font-family:\"Tahoma\",sans-serif;color:#333333'>+54 11 4802-6891</span></b><b><span style='font-size:10.0pt;
+      font-family:\"Tahoma\",sans-serif;color:#666666'> <o:p></o:p></span></b></p>
+                                                    </td>
+                                                </tr>
+                                            </table>
+                                        </div>
+                                    </td>
+                                </tr>
+                            </table>
+                        </div>
+                    </td>
+                </tr>
+                <tr>
+                    <td width=600 valign=top style='width:450.0pt;padding:0cm 0cm 0cm 0cm'>
+                        <div align=center>
+                            <table border=0 cellspacing=0 cellpadding=0 width=\"100%\" style='width:100.0%'>
+                                <tr>
+                                    <td style='padding:0cm 0cm 0cm 0cm'>
+                                        <div align=center>
+                                            <table border=0 cellspacing=0 cellpadding=0 width=\"100%\" style='width:100.0%'>
+                                                <tr>
+                                                    <td style='background:#FF672A;padding:0pt 7.5pt 7.5pt 7.5pt'>
+                                                        <p align=right style='margin-bottom:0cm;margin-bottom:.0001pt;text-align:right;line-height:normal'><b><span style='font-size:15.0pt;font-family:\"Arial\",sans-serif;
+      color:white'>Confirmación de reserva <o:p></o:p></span></b></p>
+                                                    </td>
+                                                </tr>
+                                                <tr>
+                                                    <td style='padding:0cm 0cm 0cm 0cm;height:15.0pt'></td>
+                                                </tr>
+                                                <tr>
+                                                    <td style='padding:0cm 0cm 0cm 0cm'>
+                                                        <div align=center>
+                                                            <table border=0 cellspacing=0 cellpadding=0 width=\"100%\" style='width:100.0%;'>
+                                                                <tr>
+                                                                    <td width=\"100%\" style='width:100.0%;padding:0cm 0cm 0cm 0cm'>
+                                                                        <p style='line-height:normal;font-size:10.5pt;font-family:\"Arial\",sans-serif;color:black'>A continuación los detalles del turno:<o:p></o:p>
+                                                                    </td>
+                                                                </tr>
+                                                            </table>
+                                                        </div>
+                                                    </td>
+                                                </tr>
+                                                <tr>
+                                                    <td style='padding:0cm 0cm 0cm 0cm'>
+                                                        <div align=center>
+                                                            <table border=0 cellspacing=0 cellpadding=0 width=\"100%\" style='width:100.0%'>
+                                                                <tr>
+                                                                    <td style='border:none;border-bottom:solid #BBBBBB 1.0pt;padding:0cm 0cm 0cm 0cm'>
+                                                                        <p style='margin-bottom:0cm;margin-bottom:.0001pt;line-height:21.0pt'><span style='font-size:10.5pt;font-family:\"Arial\",sans-serif;
+        color:#333333'>Paciente<o:p></o:p></span></p>
+                                                                    </td>
+                                                                    <td style='border:none;border-bottom:solid #BBBBBB 1.0pt;padding:0cm 0cm 0cm 0cm'>
+                                                                        <p align=right style='margin-bottom:0cm;margin-bottom:
+        .0001pt;text-align:right;line-height:13.5pt'><span style='font-size:
+        10.5pt;font-family:\"Arial\",sans-serif;color:#333333'> $n <o:p></o:p>
+                                                                            </span>
+                                                                        </p>
+                                                                    </td>
+                                                                </tr>
+                                                                <tr>
+                                                                    <td style='border:none;border-bottom:solid #BBBBBB 1.0pt;padding:0cm 0cm 0cm 0cm'>
+                                                                        <p style='margin-bottom:0cm;margin-bottom:.0001pt;line-height:21.0pt'><span style='font-size:10.5pt;font-family:\"Arial\",sans-serif;
+        color:#333333'>Contacto<o:p></o:p></span></p>
+                                                                    </td>
+                                                                    <td style='border:none;border-bottom:solid #BBBBBB 1.0pt;padding:0cm 0cm 0cm 0cm'>
+                                                                        <p align=right style='margin-bottom:0cm;margin-bottom:
+        .0001pt;text-align:right;line-height:13.5pt'><span style='font-size:
+        10.5pt;font-family:\"Arial\",sans-serif;color:#333333'> Correo: $pe - Tel.: $t <o:p></o:p>
+                                                                            </span>
+                                                                        </p>
+                                                                    </td>
+                                                                </tr>
+                                                                <tr>
+                                                                    <td style='border:none;border-bottom:solid #BBBBBB 1.0pt;padding:0cm 0cm 0cm 0cm'>
+                                                                        <p style='margin-bottom:0cm;margin-bottom:.0001pt;line-height:21.0pt'><span style='font-size:10.5pt;font-family:\"Arial\",sans-serif;
+        color:#333333'>Fecha y Horario<o:p></o:p></span></p>
+                                                                    </td>
+                                                                    <td style='border:none;border-bottom:solid #BBBBBB 1.0pt;padding:0cm 0cm 0cm 0cm'>
+                                                                        <p align=right style='margin-bottom:0cm;margin-bottom:
+        .0001pt;text-align:right;line-height:13.5pt'><span style='font-size:
+        10.5pt;font-family:\"Arial\",sans-serif;color:#333333'>$f  - $h <span class=SpellE>hs</span>
+                                                                            <o:p></o:p>
+                                                                            </span>
+                                                                        </p>
+                                                                    </td>
+                                                                </tr>
+                                                                <tr>
+                                                                    <td style='border:none;border-bottom:solid #BBBBBB 1.0pt;padding:0cm 0cm 0cm 0cm'>
+                                                                        <p style='margin-bottom:0cm;margin-bottom:.0001pt;line-height:21.0pt'><span style='font-size:10.5pt;font-family:\"Arial\",sans-serif;
+        color:#333333'>Especialista<o:p></o:p></span></p>
+                                                                    </td>
+                                                                    <td style='border:none;border-bottom:solid #BBBBBB 1.0pt;padding:0cm 0cm 0cm 0cm'>
+                                                                        <p align=right style='margin-bottom:0cm;margin-bottom:
+        .0001pt;text-align:right;line-height:13.5pt'><span style='font-size:
+        10.5pt;font-family:\"Arial\",sans-serif;color:#333333'> $d <o:p></o:p>
+                                                                            </span>
+                                                                        </p>
+                                                                    </td>
+                                                                </tr>
+                                                                <tr>
+                                                                    <td style='border:none;border-bottom:solid #BBBBBB 1.0pt;padding:0cm 0cm 0cm 0cm'>
+                                                                        <p style='margin-bottom:0cm;margin-bottom:.0001pt;line-height:21.0pt'><span style='font-size:10.5pt;font-family:\"Arial\",sans-serif;
+        color:#333333'>Especialidad<o:p></o:p></span></p>
+                                                                    </td>
+                                                                    <td style='border:none;border-bottom:solid #BBBBBB 1.0pt;padding:0cm 0cm 0cm 0cm'>
+                                                                        <p align=right style='margin-bottom:0cm;margin-bottom:
+        .0001pt;text-align:right;line-height:13.5pt'><span style='font-size:
+        10.5pt;font-family:\"Arial\",sans-serif;color:#333333'> $e <o:p></o:p>
+                                                                            </span>
+                                                                        </p>
+                                                                    </td>
+                                                                </tr>
+                                                                <tr>
+                                                                    <td style='border:none;border-bottom:solid #BBBBBB 1.0pt;padding:0cm 0cm 0cm 0cm'>
+                                                                        <p style='margin-bottom:0cm;margin-bottom:.0001pt;line-height:21.0pt'><span style='font-size:10.5pt;font-family:\"Arial\",sans-serif;
+        color:#333333'>Mensaje<o:p></o:p></span></p>
+                                                                    </td>
+                                                                    <td style='border:none;border-bottom:solid #BBBBBB 1.0pt;padding:0cm 0cm 0cm 0cm'>
+                                                                        <p align=right style='margin-bottom:0cm;margin-bottom:
+        .0001pt;text-align:right;line-height:13.5pt'><span style='font-size:
+        10.5pt;font-family:\"Arial\",sans-serif;color:#333333'> $c <o:p></o:p>
+                                                                            </span>
+                                                                        </p>
+                                                                    </td>
+                                                                </tr>
+
+                                                            </table>
+                                                        </div>
+                                                    </td>
+                                                </tr>
+                                                <tr style='height:15.0pt'>
+                                                    <td style='padding:0cm 0cm 0cm 0cm;height:15.0pt'></td>
+                                                </tr>
+                                            </table>
+                                        </div>
+                                    </td>
+                                </tr>
+                            </table>
+                        </div>
+                    </td>
+                </tr>
+                <tr>
+                    <td width=600 valign=top style='width:450.0pt;padding:0cm 0cm 0cm 0cm'>
+                        <div align=center>
+                            <table border=0 cellspacing=0 cellpadding=0 width=\"100%\" style='width:100.0%'>
+                                <tr style='height:7.5pt'>
+                                    <td style='padding:0cm 0cm 0cm 0cm;height:7.5pt'></td>
+                                </tr>
+                                <tr>
+                                    <td style='padding:0cm 0cm 0cm 0cm'>
+                                        <div align=center>
+                                            <table border=0 cellspacing=0 cellpadding=0 width=\"100%\" style='width:100.0%'>
+                                                <tr>
+                                                    <td style='background:#605094;padding:5.25pt 5.25pt 5.25pt 5.25pt'>
+                                                    </td>
+                                                </tr>
+                                                <tr>
+                                                    <td style='padding:0cm 0cm 0cm 0cm'>
+                                                        <p style='margin-bottom:0cm;margin-bottom:.0001pt;
+      text-align:justify;line-height:12.0pt'><span style='font-size:9.0pt;
+      font-family:\"Tahoma\",sans-serif;color:#666666'>Nos encontramos en <a style=\"color:black\" href=\"https://goo.gl/maps/VgnZfq5Hkx42\">Austria 2174  7°A &bull; C.A.B.A. &bull; Argentina</a>
+      <br> Teléfono: (011) 4802-6891
+      <br> Sitio Web: <a style=\"color:black\" href=\"mailto:info@cmaustria.com.ar\">info@cmaustria.com.ar</a>
+      <o:p></o:p>
+      </span>
+                                                        </p>
+                                                    </td>
+                                                </tr>
+                                                <tr style='height:7.5pt'>
+                                                    <td style='padding:0cm 0cm 0cm 0cm;height:7.5pt'></td>
+                                                </tr>
+                                                <tr>
+                                                    <td style='padding:0cm 0cm 0cm 0cm'>
+                                                        <p style='margin-bottom:0cm;margin-bottom:.0001pt;
+      text-align:justify;line-height:10.5pt'><span style='font-size:9.0pt;font-family:\"Tahoma\",sans-serif;color:#666666'>
+                                                            ©2018 Derechos Reservados<o:p></o:p></span></p>
+                                                    </td>
+                                                </tr>
+                                            </table>
+                                        </div>
+                                    </td>
+                                </tr>
+                            </table>
+                        </div>
+                    </td>
+                </tr>
+            </table>
+
+        </div>
+
+    </div>
+
+</body>
+
+</html>        ";
 
         // Always set content-type when sending HTML email
         $headers = "MIME-Version: 1.0" . "\r\n";
@@ -103,57 +318,194 @@
 
         $message = "
 <html>
-    <head>
-        <title>Detalles del Turno</title>
-    </head>
-    <body>
-		<!-- Wrapper -->
-			<div>
-				<!-- Header -->
-					<header style=\"padding: 15px\"> 
-						<span><img src=\"http://www.cmaustria.com.ar/images/logo.png\" alt=\"\" style=\"max-width: 30%;\"/></span>
-					</header>
-				<!-- Main -->
-					<div>
-						<!-- Content -->
-							<section>
-								<!-- Text -->
-									<section>
-                                    <div>
-										<h2 style=\"text-align: right;\">
-                                            Su turno ha sido confirmado.
-                                        <br />
-                                    </div>
-										<hr  style=\"color: orange;\"/>
-										<h3> 
-                                            A continuación los detalles:<br><br>
-                                            Nombre y Apellido: <strong>$n</strong><br>
-                                            Fecha: <strong>$f</strong><br>
-                                            Hora: <strong>$h</strong><br>
-                                            Profesional: <strong>$d</strong><br>
-                                        </h3>
-										<hr  style=\"color: orange;\"/>
-									</section>
-							</section>
-					</div>
-				<!-- Footer -->
-					<footer>
-                        <h4>Recuerde llevar a la cita médica sus últimos estudios en caso de ser necesarios. <br />
-                        Solicitamos su presencia con una antelación de 10 minutos a la hora del turno. Muchas gracias.
-                        </h4>
-                        <h3>Nos encontramos en</h3>
-                        <dl class=\"alt\">
-                            <dt>Dirección</dt>
-                            <dd><a style=\"color: black\" href=\"https://goo.gl/maps/VgnZfq5Hkx42\" target=\"_blank\">Austria 2174  7°A &bull; C.A.B.A. &bull; Argentina</a></dd>
-                            <dt>Teléfono</dt>
-                            <dd>(011) 4802-6891</dd>
-                            <dt>Email</dt>
-                            <dd><a style=\"color: black\" href=\"mailto:info@cmaustria.com.ar\">info@cmaustria.com.ar</a></dd>
-                        </dl>
-					</footer>
-			</div>
-    </body>
+
+<head>
+
+    <style>
+
+        p {
+            margin-right: 0cm;
+            margin-left: 0cm;
+            font-size: 12.0pt;
+            font-family: \"Calibri\", serif;
+        }
+        
+    </style>
+
+</head>
+
+<body>
+
+    <div class=WordSection1>
+
+        <div align=center>
+
+            <table border=0 cellspacing=0 cellpadding=0 width=0 style='width:450.0pt'>
+                <tr>
+                    <td width=600 valign=top style='width:450.0pt;padding:0cm 0cm 0cm 0cm'>
+                        <div align=center>
+                            <table border=0 cellspacing=0 cellpadding=0 width=\"100%\" style='width:100.0%;'>
+                                <tr>
+                                    <td style='padding:0cm 0cm 0cm 0cm'>
+                                        <div align=center>
+                                            <table border=0 cellspacing=0 cellpadding=0 width=\"100%\" style='width:100.0%'>
+                                                <tr>
+                                                    <td style='width:112.5pt;padding:0cm 0cm 0cm 0cm'><img width=\"150%\"  src='http://www.cmaustria.com.ar/images/logo_mini.png' /></td>
+                                                    <td width=450 style='width:337.5pt;padding:0cm 0cm 0cm 0cm'>
+                                                        <p align=right style='margin-bottom:0cm;margin-bottom:
+      .0001pt;text-align:right;line-height:normal'><b><span style='font-size:10.0pt;font-family:\"Tahoma\",sans-serif;color:#666666;'>Turno Online<br>
+      </span></b><b><span style='font-size:15.0pt;font-family:\"Tahoma\",sans-serif;color:#333333'>+54 11 4802-6891</span></b><b><span style='font-size:10.0pt;
+      font-family:\"Tahoma\",sans-serif;color:#666666'> <o:p></o:p></span></b></p>
+                                                    </td>
+                                                </tr>
+                                            </table>
+                                        </div>
+                                    </td>
+                                </tr>
+                            </table>
+                        </div>
+                    </td>
+                </tr>
+                <tr>
+                    <td width=600 valign=top style='width:450.0pt;padding:0cm 0cm 0cm 0cm'>
+                        <div align=center>
+                            <table border=0 cellspacing=0 cellpadding=0 width=\"100%\" style='width:100.0%'>
+                                <tr>
+                                    <td style='padding:0cm 0cm 0cm 0cm'>
+                                        <div align=center>
+                                            <table border=0 cellspacing=0 cellpadding=0 width=\"100%\" style='width:100.0%'>
+                                                <tr>
+                                                    <td style='background:#FF672A;padding:0pt 7.5pt 7.5pt 7.5pt'>
+                                                        <p align=right style='margin-bottom:0cm;margin-bottom:.0001pt;text-align:right;line-height:normal'><b><span style='font-size:15.0pt;font-family:\"Arial\",sans-serif;
+      color:white'>Confirmación de reserva <o:p></o:p></span></b></p>
+                                                    </td>
+                                                </tr>
+                                                <tr>
+                                                    <td style='padding:0cm 0cm 0cm 0cm;height:15.0pt'></td>
+                                                </tr>
+                                                <tr>
+                                                    <td style='padding:0cm 0cm 0cm 0cm'>
+                                                        <div align=center>
+                                                            <table border=0 cellspacing=0 cellpadding=0 width=\"100%\" style='width:100.0%;'>
+                                                                <tr>
+                                                                    <td width=\"100%\" style='width:100.0%;padding:0cm 0cm 0cm 0cm'>
+                                                                        <p style='line-height:normal;font-size:10.5pt;font-family:\"Arial\",sans-serif;color:black'>$n,<o:p></o:p>
+                                                                        <p style='line-height:normal;font-size:10.5pt;font-family:
+        \"Arial\",sans-serif;color:black'><p style='line-height:normal;font-size:10.5pt;font-family:\"Arial\",sans-serif;color:black'>Recuerde llevar a la cita médica sus últimos estudios en caso de ser necesarios.<o:p></o:p>
+                                                                        </p>
+                                                                        <p style='line-height:normal;font-size:10.5pt;font-family:
+        \"Arial\",sans-serif;color:black;'>Solicitamos su presencia con una antelación de 10 minutos a la hora del turno. Muchas gracias.
+                                                                            <o:p></o:p>
+                                                                        </p>
+                                                                    </td>
+                                                                </tr>
+                                                            </table>
+                                                        </div>
+                                                    </td>
+                                                </tr>
+                                                <tr>
+                                                    <td style='padding:0cm 0cm 0cm 0cm'>
+                                                        <div align=center>
+                                                            <table border=0 cellspacing=0 cellpadding=0 width=\"100%\" style='width:100.0%'>
+                                                               
+                                                                <tr>
+                                                                    <td style='border:none;border-bottom:solid #BBBBBB 1.0pt;padding:0cm 0cm 0cm 0cm'>
+                                                                        <p style='margin-bottom:0cm;margin-bottom:.0001pt;line-height:21.0pt'><span style='font-size:10.5pt;font-family:\"Arial\",sans-serif;
+        color:#333333'>Fecha y Horario<o:p></o:p></span></p>
+                                                                    </td>
+                                                                    <td style='border:none;border-bottom:solid #BBBBBB 1.0pt;padding:0cm 0cm 0cm 0cm'>
+                                                                        <p align=right style='margin-bottom:0cm;margin-bottom:
+        .0001pt;text-align:right;line-height:13.5pt'><span style='font-size:
+        10.5pt;font-family:\"Arial\",sans-serif;color:#333333'>$f  - $h <span class=SpellE>hs</span>
+                                                                            <o:p></o:p>
+                                                                            </span>
+                                                                        </p>
+                                                                    </td>
+                                                                </tr>
+                                                                <tr>
+                                                                    <td style='border:none;border-bottom:solid #BBBBBB 1.0pt;padding:0cm 0cm 0cm 0cm'>
+                                                                        <p style='margin-bottom:0cm;margin-bottom:.0001pt;line-height:21.0pt'><span style='font-size:10.5pt;font-family:\"Arial\",sans-serif;
+        color:#333333'>Especialista<o:p></o:p></span></p>
+                                                                    </td>
+                                                                    <td style='border:none;border-bottom:solid #BBBBBB 1.0pt;padding:0cm 0cm 0cm 0cm'>
+                                                                        <p align=right style='margin-bottom:0cm;margin-bottom:
+        .0001pt;text-align:right;line-height:13.5pt'><span style='font-size:
+        10.5pt;font-family:\"Arial\",sans-serif;color:#333333'> $d <o:p></o:p>
+                                                                            </span>
+                                                                        </p>
+                                                                    </td>
+                                                                </tr>
+                                                                
+                                                            </table>
+                                                        </div>
+                                                    </td>
+                                                </tr>
+                                                <tr style='height:15.0pt'>
+                                                    <td style='padding:0cm 0cm 0cm 0cm;height:15.0pt'></td>
+                                                </tr>
+                                            </table>
+                                        </div>
+                                    </td>
+                                </tr>
+                            </table>
+                        </div>
+                    </td>
+                </tr>
+                <tr>
+                    <td width=600 valign=top style='width:450.0pt;padding:0cm 0cm 0cm 0cm'>
+                        <div align=center>
+                            <table border=0 cellspacing=0 cellpadding=0 width=\"100%\" style='width:100.0%'>
+                                <tr style='height:7.5pt'>
+                                    <td style='padding:0cm 0cm 0cm 0cm;height:7.5pt'></td>
+                                </tr>
+                                <tr>
+                                    <td style='padding:0cm 0cm 0cm 0cm'>
+                                        <div align=center>
+                                            <table border=0 cellspacing=0 cellpadding=0 width=\"100%\" style='width:100.0%'>
+                                                <tr>
+                                                    <td style='background:#605094;padding:5.25pt 5.25pt 5.25pt 5.25pt'>
+                                                    </td>
+                                                </tr>
+                                                <tr>
+                                                    <td style='padding:0cm 0cm 0cm 0cm'>
+                                                        <p style='margin-bottom:0cm;margin-bottom:.0001pt;
+      text-align:justify;line-height:12.0pt'><span style='font-size:9.0pt;
+      font-family:\"Tahoma\",sans-serif;color:#666666'>Nos encontramos en <a style=\"color:black\" href=\"https://goo.gl/maps/VgnZfq5Hkx42\">Austria 2174  7°A &bull; C.A.B.A. &bull; Argentina</a>
+      <br> Teléfono: (011) 4802-6891
+      <br> Sitio Web: <a style=\"color:black\" href=\"mailto:info@cmaustria.com.ar\">info@cmaustria.com.ar</a>
+      <o:p></o:p>
+      </span>
+                                                        </p>
+                                                    </td>
+                                                </tr>
+                                                <tr style='height:7.5pt'>
+                                                    <td style='padding:0cm 0cm 0cm 0cm;height:7.5pt'></td>
+                                                </tr>
+                                                <tr>
+                                                    <td style='padding:0cm 0cm 0cm 0cm'>
+                                                        <p style='margin-bottom:0cm;margin-bottom:.0001pt;
+      text-align:justify;line-height:10.5pt'><span style='font-size:9.0pt;font-family:\"Tahoma\",sans-serif;color:#666666'>
+                                                            ©2018 Derechos Reservados<o:p></o:p></span></p>
+                                                    </td>
+                                                </tr>
+                                            </table>
+                                        </div>
+                                    </td>
+                                </tr>
+                            </table>
+                        </div>
+                    </td>
+                </tr>
+            </table>
+
+        </div>
+
+    </div>
+
+</body>
+
 </html>
+
         ";
 
         // Always set content-type when sending HTML email
@@ -260,7 +612,7 @@
                 
                 
                 // envío automático de e-mails
-          //      enviarMailProfesional($db, $prof, $turno_id);
+                enviarMailProfesional($db, $prof, $turno_id);
                 enviarMailPaciente($db, $prof, $turno_id);
             }
             catch( PDOException $Exception ) {
